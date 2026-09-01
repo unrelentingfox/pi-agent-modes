@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "pi-modes configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "Optional JSON Schema URI for editor validation."
+    },
+    "modePaths": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Additional Markdown mode files or directories."
+    },
+    "cycleHotkey": {
+      "type": "string",
+      "description": "Optional Pi shortcut used to cycle modes."
+    }
+  }
+}

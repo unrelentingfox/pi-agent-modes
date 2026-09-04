@@ -1,26 +1,51 @@
 {
-  "name": "pi-modes",
-  "version": "1.0.0",
+  "name": "@unrelentingfox/pi-agent-modes",
+  "version": "0.1.0",
   "description": "Configuration-driven operation modes for Pi",
   "license": "MIT",
+  "author": "Dustin Fox",
   "type": "module",
   "main": "index.ts",
   "files": [
     "index.ts",
     "src",
     "schemas",
-    "tsconfig.json",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md",
+    "SECURITY.md"
   ],
-  "keywords": ["pi-package", "pi", "modes"],
+  "keywords": [
+    "pi-package",
+    "pi",
+    "agent",
+    "modes"
+  ],
+  "engines": {
+    "node": ">=22.19.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unrelentingfox/pi-agent-modes.git"
+  },
+  "homepage": "https://github.com/unrelentingfox/pi-agent-modes#readme",
+  "bugs": {
+    "url": "https://github.com/unrelentingfox/pi-agent-modes/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "pi": {
-    "extensions": ["./index.ts"]
+    "extensions": [
+      "./index.ts"
+    ]
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "node --experimental-strip-types --test test/*.test.ts",
-    "lint": "tsc --noEmit"
+    "lint": "npm run typecheck",
+    "pack:check": "node scripts/check-package.mjs"
   },
   "peerDependencies": {
     "@earendil-works/pi-agent-core": "*",
@@ -29,17 +54,25 @@
     "@earendil-works/pi-tui": "*"
   },
   "peerDependenciesMeta": {
-    "@earendil-works/pi-agent-core": { "optional": true },
-    "@earendil-works/pi-ai": { "optional": true },
-    "@earendil-works/pi-coding-agent": { "optional": true },
-    "@earendil-works/pi-tui": { "optional": true }
+    "@earendil-works/pi-agent-core": {
+      "optional": true
+    },
+    "@earendil-works/pi-ai": {
+      "optional": true
+    },
+    "@earendil-works/pi-coding-agent": {
+      "optional": true
+    },
+    "@earendil-works/pi-tui": {
+      "optional": true
+    }
   },
   "devDependencies": {
-    "@earendil-works/pi-agent-core": "0.75.5",
-    "@earendil-works/pi-ai": "0.75.5",
-    "@earendil-works/pi-coding-agent": "0.75.5",
-    "@earendil-works/pi-tui": "0.75.5",
-    "@types/node": "24.12.4",
+    "@earendil-works/pi-agent-core": "0.84.4",
+    "@earendil-works/pi-ai": "0.84.4",
+    "@earendil-works/pi-coding-agent": "0.84.4",
+    "@earendil-works/pi-tui": "0.84.4",
+    "@types/node": "22.19.19",
     "typescript": "5.9.3"
   }
 }

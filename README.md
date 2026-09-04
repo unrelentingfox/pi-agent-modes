@@ -1,23 +1,42 @@
-# pi-modes
+# Pi Agent Modes
 
-`pi-modes` is a small, configuration-driven [Pi](https://pi.dev) extension for
-switching the parent agent between user-authored operation modes. It provides
-no default modes and has no runtime dependency on `pi-subagents`.
+`@unrelentingfox/pi-agent-modes` is a small, configuration-driven
+[Pi](https://pi.dev) extension for switching the parent agent between
+user-authored operation modes. It provides no default modes and has no runtime
+dependency on `pi-subagents` or another Pi extension.
+
+Source: <https://github.com/unrelentingfox/pi-agent-modes>
 
 A mode controls the parent agent's selected model, thinking level, active tool
 surface, and append-system-prompt projection. It is **not** a sandbox or a
 permission boundary. Pi permission extensions and host policy remain
 authoritative.
 
+## Requirements
+
+- Node.js 22.19.0 or newer
+- Pi 0.84.4 or newer (0.84.4 is the tested compatibility baseline)
+
+Pi 0.84.4 requires Node 22.19.0, so this package follows the same minimum.
+Pi's extension APIs can change before a stable release. Continuous integration
+also tests the current Node Long-Term Support (LTS) release, while Pi
+compatibility is verified against the pinned development version.
+
 ## Install
 
-Install from an npm package when published, or load this local directory:
+Install the npm package through Pi:
 
 ```bash
-pi install /path/to/pi-modes
+pi install npm:@unrelentingfox/pi-agent-modes@0.1.0
 ```
 
-Pi discovers the package entry point from `package.json`. Use `/reload` after
+For local development, install this checkout instead:
+
+```bash
+pi install /path/to/pi-agent-modes
+```
+
+Pi discovers the extension entry point from `package.json`. Use `/reload` after
 installing it in a live session.
 
 ## Configuration and discovery
@@ -27,8 +46,8 @@ and may be empty. Add files or directories in `~/.pi/agent/modes.json`:
 
 ```json
 {
-  "$schema": "/path/to/pi-modes/schemas/modes.schema.json",
-  "modePaths": ["~/dotfiles/pi/modes", "~/work/modes/reviewer.md"],
+  "$schema": "https://raw.githubusercontent.com/unrelentingfox/pi-agent-modes/v0.1.0/schemas/modes.schema.json",
+  "modePaths": ["~/modes", "~/work/modes/reviewer.md"],
   "cycleHotkey": "ctrl+shift+m"
 }
 ```
@@ -191,6 +210,35 @@ permission extension's final `tool_call` gate. `pi-tool-manager` and similar
 extensions can alter tools after activation; Pi has no general ownership
 protocol, so those later changes intentionally remain in effect.
 
+## Security
+
+Modes can select tools and modify Pi's append-system-prompt layer. They cannot
+grant permission, bypass a permission extension, or contain processes. Treat
+mode files as executable agent configuration and review files from other
+people before loading them. See [SECURITY.md](SECURITY.md) for reporting and
+the full trust boundary.
+
+## Development
+
+```bash
+npm ci
+npm test
+npm run typecheck
+npm run pack:check
+```
+
+The suite currently contains 36 tests. Package checks verify that the npm
+tarball contains runtime source, schemas, documentation, and license files,
+but not tests, local configuration, or dependencies.
+
+## Releases
+
+This package uses Semantic Versioning. The changelog records user-visible
+changes. A maintainer publishes a `v<version>` GitHub release after updating
+`package.json` and `CHANGELOG.md`; the repository release workflow reruns all
+checks and publishes to npm with trusted publishing and provenance. Each minor
+release documents the Pi version used for compatibility testing.
+
 ## License
 
-MIT. See [LICENSE](LICENSE).
+MIT © Dustin Fox. See [LICENSE](LICENSE).

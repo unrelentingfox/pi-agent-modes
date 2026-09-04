@@ -5,4 +5,4 @@
 3. Keep changes focused and add tests for behavior changes.
 4. Use a semantic commit subject such as `fix(runtime): restore mode state`.
 
-Releases use Semantic Versioning. A maintainer publishes a GitHub release whose tag matches `package.json`; the release workflow validates and publishes the package to npm with provenance.
+Releases use Semantic Versioning. Follow [RELEASING.md](RELEASING.md); the first npm publication is manual, and later matching GitHub releases publish with provenance.

@@ -233,11 +233,11 @@ but not tests, local configuration, or dependencies.
 
 ## Releases
 
-This package uses Semantic Versioning. The changelog records user-visible
-changes. A maintainer publishes a `v<version>` GitHub release after updating
-`package.json` and `CHANGELOG.md`; the repository release workflow reruns all
-checks and publishes to npm with trusted publishing and provenance. Each minor
-release documents the Pi version used for compatibility testing.
+This package uses Semantic Versioning. The first npm publication is manual;
+later `v<version>` GitHub releases rerun all checks and publish through trusted
+publishing with provenance. Follow [RELEASING.md](RELEASING.md), update
+`CHANGELOG.md`, and document the Pi compatibility baseline for each minor
+release.
 
 ## License
 
